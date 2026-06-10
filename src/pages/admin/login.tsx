@@ -17,13 +17,26 @@ export default function AdminLogin() {
     e.preventDefault();
     setError('');
     setLoading(true);
+
+    // Try Supabase first
     const { error } = await signIn(email, password);
-    setLoading(false);
-    if (error) {
-      setError('Invalid email or password.');
-    } else {
+
+    if (!error) {
+      setLoading(false);
       setLocation('/admin');
+      return;
     }
+
+    // Fallback: local admin check
+    if (email === 'blcobra8585@gmail.com' && password === 'saniya00') {
+      localStorage.setItem('admin_local_auth', 'true');
+      setLoading(false);
+      setLocation('/admin');
+      return;
+    }
+
+    setLoading(false);
+    setError('Invalid email or password.');
   };
 
   return (
