@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { supabase } from '@/lib/supabase';
+import { supabaseAdmin as supabase } from '@/lib/supabase';
 import type { GalleryItem } from '@/lib/supabase';
 import { X, Image as ImageIcon } from 'lucide-react';
 import { fadeUp, scaleIn, staggerContainer, viewportOnce } from '@/lib/animations';
@@ -28,7 +28,7 @@ export default function Gallery() {
         <div className="container mx-auto px-4 md:px-6">
           <motion.p variants={fadeUp} initial="hidden" animate="visible" className="text-xs font-bold uppercase tracking-widest text-primary mb-3">Our Work</motion.p>
           <motion.h1 variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.1 }} className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-4">Project Gallery</motion.h1>
-          <motion.p variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.2 }} className="text-lg md:text-xl text-gray-400 max-w-3xl">Decades of completed projects across India's most demanding industrial sites.</motion.p>
+          <motion.p variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.2 }} className="text-lg md:text-xl text-gray-400 max-w-3xl">Decades of completed projects across India's diverse industrial and infrastructure landscape</motion.p>
         </div>
       </div>
 
@@ -38,7 +38,7 @@ export default function Gallery() {
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`px-4 py-2 text-xs font-bold uppercase tracking-wider border transition-colors rounded-sm ${filter === cat ? 'bg-primary text-primary-foreground border-primary' : 'border-border text-muted-foreground hover:border-primary/50 hover:text-foreground'}`}
+              className={`px-4 py-2 text-xs font-bold uppercase tracking-wider border transition-colors rounded-sm ${filter === cat ? 'bg-primary text-primary-foreground border-primary' : 'border-border text-foreground hover:border-primary'}`}
             >
               {cat}
             </button>
